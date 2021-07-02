@@ -1,0 +1,31 @@
+- hosts: all
+  gather_facts: no
+  vars_files:
+    - group_vars/vault
+  roles:
+    - { role: datadog.datadog, become: yes}
+    - geerlingguy.pip
+
+  tasks:
+    - name: install docker package
+      pip:
+        name: docker
+
+    - name: deploy redmine app
+      community.docker.docker_container:
+        name: redmine
+        image: redmine:latest
+        recreate: yes
+        ports:
+          - 80:3000
+        state: started
+        env:
+          REDMINE_DB_DATABASE: "{{ REDMINE_DB_DATABASE }}"
+          REDMINE_DB_POSTGRES: "{{ REDMINE_DB_POSTGRES }}"
+          REDMINE_DB_PORT: "{{ REDMINE_DB_PORT }}"
+          REDMINE_DB_USERNAME: "{{ REDMINE_DB_USERNAME }}"
+          REDMINE_DB_PASSWORD: "{{ REDMINE_DB_PASSWORD }}"
+
+    - name: install datadog
+      include_role:
+        name: datadog.datadog
