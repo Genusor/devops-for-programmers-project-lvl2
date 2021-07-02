@@ -1,4 +1,2 @@
 network
-group_vars/vars
-group_vars/pass
 pass
