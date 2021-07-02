@@ -43,6 +43,6 @@ encrypt:
 	ansible-vault encrypt group_vars/vault.yml
 
 #Деплой
-deploy_redmine:
+deploy:
 	ansible-playbook playbook.yml -i inventory.ini --vault-password-file pass
 
