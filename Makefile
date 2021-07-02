@@ -17,7 +17,7 @@ test_base:
 	-e POSTGRES_PASSWORD=secret \
 	postgres
 test_redmine:
-	docker run --rm -d \
+	docker run --rm \
 	--name test_redmine \
 	-p 8080:3000 \
 	-e REDMINE_DB_USERNAME=redmine \

@@ -1,5 +1,6 @@
 - hosts: all
-
+  become: yes
+  gather_facts: no
   roles:
     - { role: datadog.datadog, become: yes}
     - geerlingguy.pip
@@ -11,7 +12,8 @@
     - name: install datadog
       include_role:
         name: datadog.datadog
-
+        apply:
+          become: yes
     - name: install docker package
       pip:
         name: docker
@@ -20,8 +22,6 @@
       docker_container:
         name: redmine
         image: redmine
-        auto_remove: yes
-        pull: yes
         ports:
           - 80:3000
         state: started
