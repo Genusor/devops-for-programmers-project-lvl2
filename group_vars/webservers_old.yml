@@ -1,5 +1,3 @@
-vars_files:
-  - group_vars/vault
 REDMINE_DB_DATABASE: "{{ vault_REDMINE_DB_DATABASE }}"
 REDMINE_DB_POSTGRES: "{{ vault_REDMINE_DB_POSTGRES }}"
 REDMINE_DB_PORT: "{{ vault_REDMINE_DB_PORT }}"
