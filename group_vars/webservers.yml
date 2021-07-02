@@ -1,6 +1,6 @@
 REDMINE_DB_DATABASE: defaultdb
 REDMINE_DB_POSTGRES: devops-for-programmers-project-lvl-db-do-user-9398311-0.b.db.ondigitalocean.com
-REDMINE_DB_PORT: 25060
+REDMINE_DB_PORT: "25060"
 REDMINE_DB_USERNAME: doadmin
 REDMINE_DB_PASSWORD: !vault |
           $ANSIBLE_VAULT;1.1;AES256
