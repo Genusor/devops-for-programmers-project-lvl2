@@ -1,3 +1,4 @@
 network
 group_vars/vars
-password-file
+group_vars/pass
+pass

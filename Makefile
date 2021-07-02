@@ -44,5 +44,5 @@ encrypt:
 
 #Деплой
 deploy_redmine:
-	ansible-playbook playbook.yml -i inventory.ini --vault-password-file password-file
+	ansible-playbook playbook.yml -i inventory.ini --vault-password-file pass
 
