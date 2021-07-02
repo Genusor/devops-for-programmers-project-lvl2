@@ -1,35 +1,31 @@
 - hosts: all
 
-  #vars_files:
-    #- group_vars/webservers.yml
+  vars_files:
+    - group_vars/webservers.yml
 
-  #roles:
-    #- { role: datadog.datadog, become: yes}
+  roles:
+    - { role: datadog.datadog, become: yes}
+    - geerlingguy.pip
 
   tasks:
-    - name: install python3
-      apt:
-        name: python3-pip
-        state: present
-        update_cache: yes
     - name: install docker package
       pip:
         name: docker
 
     - name: deploy redmine app
-      community.docker.docker_container:
+      docker_container:
         name: redmine
-        image: redmine:latest
+        image: redmine
         recreate: yes
         ports:
           - 80:3000
         state: started
         env:
-          REDMINE_DB_DATABASE: "{{ REDMINE_DB_DATABASE }}"
-          REDMINE_DB_POSTGRES: "{{ REDMINE_DB_POSTGRES }}"
-          REDMINE_DB_PORT: "{{ REDMINE_DB_PORT }}"
-          REDMINE_DB_USERNAME: "{{ REDMINE_DB_USERNAME }}"
-          REDMINE_DB_PASSWORD: "{{ REDMINE_DB_PASSWORD }}"
+          REDMINE_DB_DATABASE: '{{ REDMINE_DB_DATABASE }}'
+          REDMINE_DB_POSTGRES: '{{ REDMINE_DB_POSTGRES }}'
+          REDMINE_DB_PORT: '{{ REDMINE_DB_PORT }}'
+          REDMINE_DB_USERNAME: '{{ REDMINE_DB_USERNAME }}'
+          REDMINE_DB_PASSWORD: '{{ REDMINE_DB_PASSWORD }}'
 
     - name: install datadog
       include_role:
