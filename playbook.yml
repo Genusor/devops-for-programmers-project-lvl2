@@ -12,7 +12,6 @@
              method: GET
   vars_files:
     - group_vars/webservers.yml
-    - group_vars/vault
   roles:
     - { role: datadog.datadog, become: yes}
     - geerlingguy.pip
