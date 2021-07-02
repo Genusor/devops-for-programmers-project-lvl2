@@ -1,5 +1,15 @@
 - hosts: all
-
+  vars:
+     datadog_api_key: "{{ datadog_key }}"
+     datadog_site: "datadoghq.com"
+     datadog_checks:
+       http_check:
+         init_config:
+         instances:
+           - name: Application health check status
+             url: http://localhost:80
+             timeout: 1
+             method: GET
   vars_files:
     - group_vars/webservers.yml
     - group_vars/vault
