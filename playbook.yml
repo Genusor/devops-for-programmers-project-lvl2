@@ -1,19 +1,17 @@
 - hosts: all
-  pre_tasks:
-      - name: Update and upgrade apt packages
-        become: true
-        apt:
-            upgrade: yes
-            update_cache: yes
-            cache_valid_time: 86400
-  vars_files:
-    - group_vars/webservers.yml
 
   roles:
     - { role: datadog.datadog, become: yes}
     - geerlingguy.pip
 
+  vars_files:
+    - group_vars/webservers.yml
+
   tasks:
+    - name: install datadog
+      include_role:
+        name: datadog.datadog
+
     - name: install docker package
       pip:
         name: docker
@@ -28,12 +26,9 @@
           - 80:3000
         state: started
         env:
-          REDMINE_DB_DATABASE: '{{ REDMINE_DB_DATABASE }}'
-          REDMINE_DB_POSTGRES: '{{ REDMINE_DB_POSTGRES }}'
-          REDMINE_DB_PORT: '{{ REDMINE_DB_PORT }}'
-          REDMINE_DB_USERNAME: '{{ REDMINE_DB_USERNAME }}'
-          REDMINE_DB_PASSWORD: '{{ REDMINE_DB_PASSWORD }}'
+          REDMINE_DB_DATABASE: "{{ REDMINE_DB_DATABASE }}"
+          REDMINE_DB_POSTGRES: "{{ REDMINE_DB_POSTGRES }}"
+          REDMINE_DB_PORT: "{{ REDMINE_DB_PORT }}"
+          REDMINE_DB_USERNAME: "{{ REDMINE_DB_USERNAME }}"
+          REDMINE_DB_PASSWORD: "{{ REDMINE_DB_PASSWORD }}"
 
-    - name: install datadog
-      include_role:
-        name: datadog.datadog
