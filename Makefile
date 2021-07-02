@@ -41,7 +41,8 @@ run_remote:
 #Зашифровать все переменные
 encrypt:
 	ansible-vault encrypt group_vars/vault.yml
-
+crypt-key:
+	ansible-vault encrypt_string "value" --name 'key'
 #Деплой
 deploy_redmine:
 	ansible-playbook playbook.yml -i inventory.ini --vault-password-file pass
