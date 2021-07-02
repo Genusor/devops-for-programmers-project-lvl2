@@ -1,5 +1,11 @@
 - hosts: all
-
+  pre_tasks:
+      - name: Update and upgrade apt packages
+        become: true
+        apt:
+            upgrade: yes
+            update_cache: yes
+            cache_valid_time: 86400
   vars_files:
     - group_vars/webservers.yml
 
@@ -16,7 +22,8 @@
       docker_container:
         name: redmine
         image: redmine
-        recreate: yes
+        auto_remove: yes
+        pull: yes
         ports:
           - 80:3000
         state: started
