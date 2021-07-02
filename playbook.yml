@@ -3,11 +3,15 @@
   vars_files:
     - group_vars/webservers.yml
 
-  roles:
-    - { role: datadog.datadog, become: yes}
-    - geerlingguy.pip
+  #roles:
+    #- { role: datadog.datadog, become: yes}
 
   tasks:
+    - name: install python3
+      apt:
+        name: python3-pip
+        state: present
+        update_cache: yes
     - name: install docker package
       pip:
         name: docker
