@@ -1,4 +1,8 @@
 - hosts: all
+
+  vars_files:
+    - group_vars/webservers.yml
+
   vars:
      datadog_api_key: "{{ datadog_key }}"
      datadog_site: "datadoghq.com"
@@ -10,8 +14,6 @@
              url: http://localhost:80
              timeout: 1
              method: GET
-  vars_files:
-    - group_vars/webservers.yml
   roles:
     - { role: datadog.datadog, become: yes}
     - geerlingguy.pip
