@@ -1,5 +1,8 @@
 - hosts: all
 
+  vars_files:
+    - group_vars/webservers.yml
+    - group_vars/vault
   roles:
     - { role: datadog.datadog, become: yes}
     - geerlingguy.pip
@@ -18,11 +21,11 @@
           - 80:3000
         state: started
         env:
-          REDMINE_DB_DATABASE: "{{ redmine_pg_db }}"
-          REDMINE_DB_POSTGRES: "{{ redmine_pg_host }}"
-          REDMINE_DB_PORT: "{{ redmine_pg_port }}"
-          REDMINE_DB_USERNAME: "{{ redmine_pg_username }}"
-          REDMINE_DB_PASSWORD: "{{ redmine_pg_password }}"
+          REDMINE_DB_DATABASE: "{{ REDMINE_DB_DATABASE }}"
+          REDMINE_DB_POSTGRES: "{{ REDMINE_DB_POSTGRES }}"
+          REDMINE_DB_PORT: "{{ REDMINE_DB_PORT }}"
+          REDMINE_DB_USERNAME: "{{ REDMINE_DB_USERNAME }}"
+          REDMINE_DB_PASSWORD: "{{ REDMINE_DB_PASSWORD }}"
 
     - name: install datadog
       include_role:
