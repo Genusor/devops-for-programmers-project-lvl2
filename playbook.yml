@@ -1,7 +1,5 @@
 - hosts: all
-  gather_facts: no
-  vars_files:
-    - group_vars/webservers.yml
+
   roles:
     - { role: datadog.datadog, become: yes}
     - geerlingguy.pip
