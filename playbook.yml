@@ -12,6 +12,10 @@
     - group_vars/webservers.yml
 
   tasks:
+    - name: Update and upgrade apt packages
+      apt:
+        upgrade: yes
+        update_cache: yes
     - name: deploy redmine app
       docker_container:
         name: redmine
