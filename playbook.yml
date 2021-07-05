@@ -4,15 +4,14 @@
   roles:
     - geerlingguy.pip
 
+  vars:
+    pip_install_packages:
+      - name: docker
+
   vars_files:
     - group_vars/webservers.yml
 
   tasks:
-
-    - name: install docker package
-      pip:
-        name: docker
-
     - name: deploy redmine app
       docker_container:
         name: redmine
