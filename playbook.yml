@@ -2,18 +2,13 @@
   become: yes
   gather_facts: no
   roles:
-    - { role: datadog.datadog, become: yes}
     - geerlingguy.pip
 
   vars_files:
     - group_vars/webservers.yml
 
   tasks:
-    - name: install datadog
-      include_role:
-        name: datadog.datadog
-        apply:
-          become: yes
+
     - name: install docker package
       pip:
         name: docker

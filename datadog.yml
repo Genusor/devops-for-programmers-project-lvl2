@@ -1,0 +1,17 @@
+ - hosts: webservers
+   vars:
+     datadog_site: 'datadoghq.eu'
+     datadog_api_key: "{{ datadog_api_key }}"
+     datadog_checks:
+       http_check:
+         init_config:
+         instances:
+           - name: Application health check status
+             url: http://localhost:8080
+             timeout: 1
+             method: GET
+
+   tasks:
+    - name: install datadog
+      include_role:
+        name: datadog.datadog
