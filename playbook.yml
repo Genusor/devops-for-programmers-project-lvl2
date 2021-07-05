@@ -8,14 +8,14 @@
     pip_install_packages:
       - name: docker
 
-  vars_files:
-    - group_vars/webservers.yml
-
-  tasks:
+  pre_tasks:
     - name: Update and upgrade apt packages
       apt:
         upgrade: yes
         update_cache: yes
+
+  tasks:
+
     - name: deploy redmine app
       docker_container:
         name: redmine
