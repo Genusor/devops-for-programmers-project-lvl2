@@ -16,7 +16,7 @@ docker run -d \
 	-e REDMINE_DB_POSTGRES=devops-for-programmers-project-lvl-db-do-user-9398311-0.b.db.ondigitalocean.com \
 	-e REDMINE_DB_PORT=25060 \
 	-e REDMINE_DB_USERNAME=doadmin \
-	-e REDMINE_DB_PASSWORD=yvgkfy1as9kmz7tf \
+	-e REDMINE_DB_PASSWORD=<пароль> \
 	redmine
 ```
 
