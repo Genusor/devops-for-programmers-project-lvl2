@@ -1,10 +1,9 @@
-- import_playbook: datadog.yml
-
 - hosts: all
   become: yes
   gather_facts: yes
   roles:
     - geerlingguy.pip
+    - datadog.datadog
 
   vars:
     pip_install_packages:
@@ -17,7 +16,6 @@
         update_cache: yes
 
   tasks:
-
     - name: deploy redmine app
       docker_container:
         name: redmine
@@ -26,9 +24,9 @@
           - 80:3000
         state: started
         env:
-          REDMINE_DB_DATABASE: "{{ REDMINE_DB_DATABASE }}"
-          REDMINE_DB_POSTGRES: "{{ REDMINE_DB_POSTGRES }}"
-          REDMINE_DB_PORT: "{{ REDMINE_DB_PORT }}"
-          REDMINE_DB_USERNAME: "{{ REDMINE_DB_USERNAME }}"
-          REDMINE_DB_PASSWORD: "{{ REDMINE_DB_PASSWORD }}"
+          REDMINE_DB_DATABASE: "{{ redmine_db_database }}"
+          REDMINE_DB_POSTGRES: "{{ redmine_db_postgres }}"
+          REDMINE_DB_PORT: "{{ redmine_db_port }}"
+          REDMINE_DB_USERNAME: "{{ redmine_db_username }}"
+          REDMINE_DB_PASSWORD: "{{ redmine_db_password }}"
 

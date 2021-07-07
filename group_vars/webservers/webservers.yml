@@ -1,8 +1,9 @@
-REDMINE_DB_DATABASE: defaultdb
-REDMINE_DB_POSTGRES: devops-for-programmers-project-lvl-db-do-user-9398311-0.b.db.ondigitalocean.com
-REDMINE_DB_PORT: "25060"
-REDMINE_DB_USERNAME: doadmin
-REDMINE_DB_PASSWORD: !vault |
+redmine_db_database: defaultdb
+redmine_db_postgres: devops-for-programmers-project-lvl-db-do-user-9398311-0.b.db.ondigitalocean.com
+redmine_db_port: "25060"
+redmine_db_username: doadmin
+redmine_db_password: !vault |
+
           $ANSIBLE_VAULT;1.1;AES256
           31656361643762393935313730376566653337313038303733306166396266663765343062653633
           3266313535353965306638316139663139366437396234320a373638393363613166373266343836
